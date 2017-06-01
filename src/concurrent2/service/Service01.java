@@ -1,0 +1,22 @@
+package concurrent2.service;
+
+import java.util.concurrent.CountDownLatch;
+
+public class Service01 {
+	private CountDownLatch down = new CountDownLatch(1);
+
+	public void testMethod() {
+		try {
+			System.out.println("A");
+			down.await();
+			System.out.println("B");
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void downMethod() {
+		System.out.println("X");
+		down.countDown();
+	}
+}
